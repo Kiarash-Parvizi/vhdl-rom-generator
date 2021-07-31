@@ -51,6 +51,12 @@ class rom_maker:
                 self.__make_constant('d%x'%i, d-1, line)
             )
             self.constNames += name + ','
+        for i in range(instCnt, 2**n):
+            name = 'd%x'%i
+            self.constants += (
+                self.__make_constant('d%x'%i, d-1, '0'*int(d/4))
+            )
+            self.constNames += name + ','
         self.constNames = self.constNames[:-1]
         # create architecture_template
         arch_tem = vhdl_architecture_template % (
